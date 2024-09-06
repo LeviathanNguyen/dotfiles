@@ -36,6 +36,8 @@
         neofetch
         nnn # terminal file manager
         gh
+        chromium
+        dolphin
 
         # Archives
         zip
@@ -88,7 +90,10 @@
         pciutils    # lspci
         usbutils    # lsusb
 
-        # Login Manager
+        swaynotificationcenter
+        libnotify
+        
+
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -139,6 +144,9 @@
         enable = true;
         userName = "LeviathanNguyen";
         userEmail = "levianth74@gmail.com";
+        extraConfig = {
+            init.defaultBranch = "main";
+        };
         aliases = {
             pu = "push";
             co = "checkout";
@@ -160,6 +168,8 @@
     programs.gh = {
         enable = true;
     };
+
+    programs.chromium.enable = true;
 
     # BTOP
     programs.btop.enable = true;
