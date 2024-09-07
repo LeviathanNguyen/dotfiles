@@ -144,9 +144,6 @@
         enable = true;
         userName = "LeviathanNguyen";
         userEmail = "levianth74@gmail.com";
-        extraConfig = {
-            init.defaultBranch = "main";
-        };
         aliases = {
             pu = "push";
             co = "checkout";

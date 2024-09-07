@@ -9,7 +9,7 @@
         # Home manager
         home-manager = {
             url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
 
         # Hyprland
@@ -109,7 +109,7 @@
 
         # Standalone home-manager configuration entrypoint
         homeConfigurations = {
-            user = home-manager.lib.homeManagerConfiguration {
+            levi = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [ ./home.nix ];
                 extraSpecialArgs = {
