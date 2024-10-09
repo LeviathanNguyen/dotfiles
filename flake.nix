@@ -8,7 +8,7 @@
 
         # Home manager
         home-manager = {
-            url = "github:nix-community/home-manager";
+            url = "github:nix-community/home-manager/master";
             inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
 
@@ -79,12 +79,12 @@
             };
         };
         pkgs-unstable = import inputs.nixpkgs-unstable {
-            system = systemSettings.system;
-            config = {
-                allowUnfree = true;
-                allowUnfreePredicate = (_: true);
-            };
-        };
+	    system = systemSettings.system;
+	    config = {
+	        allowUnfree = true;
+		allowUnfreePredicate = (_: true);
+	    };
+	};
         home-manager = inputs.home-manager;
         supportedSystems = [ "aarch64-linux" "i686-linux" "x86_64-linux" ];
         forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
@@ -110,10 +110,10 @@
         # Standalone home-manager configuration entrypoint
         homeConfigurations = {
             levi = home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
+                inherit pkgs-unstable;
                 modules = [ ./home.nix ];
                 extraSpecialArgs = {
-                    inherit pkgs-unstable;
+       	 	    # inherit pkgs-unstable;
                     inherit systemSettings;
                     inherit userSettings;
                     inherit inputs;

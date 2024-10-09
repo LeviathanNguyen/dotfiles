@@ -70,6 +70,19 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
+        wireplumber.extraConfig."10-bluez" = {
+            "monitor.bluez.properties" = {
+                "bluez5.enable-sbc-xq" = true;
+                "bluez5.enable-msbc" = true;
+                "bluez5.enable-hw-volume" = true;
+                "bluez5.headset-roles" = [
+                    "hsp_hs"
+                    "hsp_ag"
+                    "hfp_hf"
+                    "hfp_ag"
+                ];
+            };
+        };
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -78,7 +91,7 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.levi = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" "input" ];
+        extraGroups = [ "wheel" "networkmanager" "input" "vboxusers" ];
         packages = with pkgs; [
             firefox
             tree
@@ -135,6 +148,7 @@
 
         # Most Wayland compositors need this
         nvidia.modesetting.enable = true;
+	nvidia.open = true;
 
         # Enable Bluetooth support
         bluetooth = {
@@ -167,7 +181,7 @@
     # Enable XDG portal
     xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
     };
 
     # Power Management
@@ -192,6 +206,12 @@
 
     # Enable Bluetooth support
     services.blueman.enable = true;
+
+    # Virtualisation
+    virtualisation.virtualbox.host = {
+        enable = true;
+        enableExtensionPack = true;
+    };
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];

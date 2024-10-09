@@ -38,6 +38,7 @@
         gh
         chromium
         dolphin
+        vscode
 
         # Archives
         zip
@@ -138,6 +139,21 @@
     #         saveLastRegion = true;
     #     };
     # };
+
+    # VSCode
+    programs.vscode = {
+        enable = true;
+        extensions = with pkgs.vscode-extensions; [
+            dracula-theme.theme-dracula
+            yzhang.markdown-all-in-one
+            christian-kohler.path-intellisense
+            formulahendry.auto-rename-tag
+            wix.vscode-import-cost
+            # lonefy.vscode-js-css-html-formatter
+            vscode-icons-team.vscode-icons
+	    ms-vscode.live-server
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [];
+    };
   
     # Github
     programs.git = {
